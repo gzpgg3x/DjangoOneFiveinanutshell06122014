@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Django blog | {% block title %} Default title {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+    <style>body { padding-top: 60px; }</style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand pull-left" href="/">My Django blog</a>
+          <form action="{% url "search" %}" method="GET" class="navbar-search pull-right">
+          <!-- <form action="{% url "search" %}" method="GET" class="navbar-search pull-right">   -->
+           <input type="search" name="{{ searchform.query.name }}" value="{{ searchform.query.value }}" class="search-query" placeholder="Search"/>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      {% block content %}
+      <h1>Default title</h1>
+      <p>Default content</p>
+      {% endblock %}
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+ 
+{% block title %} Index {% endblock %}
+ 
+{% block content %}
+ 
+  <h1>Index</h1>
+ 
+  {% for post in object_list %}
+    <article class="post">
+      <header>
+        <!-- <h2>{{ post.title }}</h2> -->
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+      </header>
+      <section>
+        {{ post.excerpt }}
+      </section>
+      <aside>
+        <p class="label label-info">
+          Published on
+          <time>{{ post.publication_date|date:"r" }}</time>
+        </p>
+        <p>
+          <a href="{{ post.get_absolute_url }}#comments">
+            <span class="badge badge-info">{{ post.commentary_set.count }}</span> commentar{{ post.commentary_set.count|pluralize:"y,ies" }}
+          </a>
+        </p>
+      </aside>
+    </article>
+  {% endfor %}
+ 
+{% endblock %}
